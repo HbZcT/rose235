@@ -1,0 +1,400 @@
+﻿<html lang="zh-CN" class="dark"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的联系方式</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E40AF',
+                        secondary: '#3B82F6',
+                        accent: '#93C5FD',
+                        dark: {
+                            bg: '#121212',
+                            card: '#1E1E1E',
+                            text: '#E0E0E0',
+                            muted: '#757575'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.95)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.3s ease-out forwards',
+                        'scale-in': 'scaleIn 0.3s ease-out forwards',
+                    }
+                },
+                dark: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#60A5FA',
+                        accent: '#BFDBFE',
+                        bg: '#121212',
+                        card: '#1E1E1E',
+                        text: '#E0E0E0',
+                        muted: '#757575'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+            }
+            .backdrop-blur {
+                backdrop-filter: blur(4px);
+            }
+            .dark-mode-toggle {
+                @apply fixed bottom-6 right-6 z-40 bg-primary/90 hover:bg-primary text-white p-3 rounded-full shadow-lg transition-all;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-dark-bg min-h-screen font-sans transition-colors duration-300">
+    <!-- 深色模式切换按钮 -->
+    <button id="dark-mode-toggle" class="dark-mode-toggle">
+        <i class="fa fa-moon-o text-xl"></i>
+    </button>
+
+    <!-- 页面头部 -->
+    <header class="bg-gradient-to-r from-primary to-secondary text-white shadow-md dark:bg-primary/90">
+        <div class="container mx-auto px-4 py-6 sm:py-8">
+            <h1 class="text-[clamp(1.8rem,5vw,2.5rem)] font-bold text-center text-shadow">
+                <i class="fa fa-address-book-o mr-2"></i>我的联系方式
+            </h1>
+            <p class="text-center mt-2 text-accent text-lg">添加我，让我们保持联系！</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- 个人简介卡片 -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8 transform transition-all hover:shadow-lg dark:bg-dark-card dark:text-dark-text">
+            <div class="flex flex-col items-center">
+                <div class="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mb-4 dark:bg-primary/20">
+                    <i class="fa fa-user-circle-o text-4xl text-primary"></i>
+                </div>
+                <h2 class="text-xl font-bold text-gray-800 mb-2 dark:text-dark-text">同学你好！</h2>
+                <p class="text-gray-600 text-center dark:text-dark-muted">
+                    很高兴认识你！<br>
+                    这是我的联系方式，欢迎添加我！
+                </p>
+            </div>
+        </div>
+
+        <!-- 联系方式列表 -->
+        <div class="grid gap-4 sm:gap-6">
+            <!-- 微信 -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden card-hover cursor-pointer dark:bg-dark-card dark:text-dark-text" id="wechat-card">
+                <div class="flex items-center p-4 sm:p-5">
+                    <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center mr-4 flex-shrink-0">
+                        <i class="fa fa-weixin text-white text-xl"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-dark-text">微信</h3>
+                        <p class="text-gray-500 text-sm dark:text-dark-muted">添加我的微信</p>
+                    </div>
+                    <i class="fa fa-angle-right text-xl text-primary"></i>
+                </div>
+            </div>
+
+            <!-- QQ -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden card-hover cursor-pointer dark:bg-dark-card dark:text-dark-text" id="qq-card">
+                <div class="flex items-center p-4 sm:p-5">
+                    <div class="w-12 h-12 rounded-full bg-blue-400 flex items-center justify-center mr-4 flex-shrink-0">
+                        <i class="fa fa-qq text-white text-xl"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-dark-text">QQ</h3>
+                        <p class="text-gray-500 text-sm dark:text-dark-muted">添加我的QQ</p>
+                    </div>
+                    <i class="fa fa-angle-right text-xl text-primary"></i>
+                </div>
+            </div>
+
+            <!-- 电话 -->
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden card-hover cursor-pointer dark:bg-dark-card dark:text-dark-text" id="phone-card">
+                <div class="flex items-center p-4 sm:p-5">
+                    <div class="w-12 h-12 rounded-full bg-red-500 flex items-center justify-center mr-4 flex-shrink-0">
+                        <i class="fa fa-phone text-white text-xl"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-dark-text">电话</h3>
+                        <p class="text-gray-500 text-sm dark:text-dark-muted">联系我</p>
+                    </div>
+                    <i class="fa fa-angle-right text-xl text-primary"></i>
+                </div>
+            </div>
+
+            <!-- 抖音 -->
+            <a href="https://v.douyin.com/NQMXkuTHMN4/" target="_blank" class="bg-white rounded-xl shadow-sm overflow-hidden card-hover dark:bg-dark-card dark:text-dark-text">
+                <div class="flex items-center p-4 sm:p-5">
+                    <div class="w-12 h-12 rounded-full bg-black flex items-center justify-center mr-4 flex-shrink-0">
+                        <i class="fa fa-music text-white text-xl"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-dark-text">抖音</h3>
+                        <p class="text-gray-500 text-sm dark:text-dark-muted">关注我的抖音</p>
+                    </div>
+                    <i class="fa fa-angle-right text-xl text-primary"></i>
+                </div>
+            </a>
+
+            <!-- 钉钉 -->
+            <a href="https://n.dingtalk.com/dingding/h5-profile/outer/index.html?fr_source=13&uidCipher=dEmv4qkJQz3ypo5wrh%2FfeQ%3D%3D&cardToken=1f4c719d63&profile=%40kgDOK-c03w" target="_blank" class="bg-white rounded-xl shadow-sm overflow-hidden card-hover dark:bg-dark-card dark:text-dark-text">
+                <div class="flex items-center p-4 sm:p-5">
+                    <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center mr-4 flex-shrink-0">
+                        <i class="fa fa-commenting text-white text-xl"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-dark-text">钉钉</h3>
+                        <p class="text-gray-500 text-sm dark:text-dark-muted">添加我的钉钉</p>
+                    </div>
+                    <i class="fa fa-angle-right text-xl text-primary"></i>
+                </div>
+            </a>
+
+            <!-- 企业微信 -->
+            <a href="https://work.weixin.qq.com/u/vc3bb7e09ff3f8c953?v=4.1.38.48842&bb=28fbb62284" target="_blank" class="bg-white rounded-xl shadow-sm overflow-hidden card-hover dark:bg-dark-card dark:text-dark-text">
+                <div class="flex items-center p-4 sm:p-5">
+                    <div class="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center mr-4 flex-shrink-0">
+                        <i class="fa fa-users text-white text-xl"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-dark-text">企业微信</h3>
+                        <p class="text-gray-500 text-sm dark:text-dark-muted">添加我的企业微信</p>
+                    </div>
+                    <i class="fa fa-angle-right text-xl text-primary"></i>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 text-white py-6 mt-12 dark:bg-primary/90">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm text-gray-400 dark:text-accent/80">黄梓涛 © 2025&nbsp;</p>
+            <p class="text-xs text-gray-500 mt-1 dark:text-accent/60">设计与开发：黄梓涛</p>
+        </div>
+    </footer>
+
+    <!-- 微信弹窗 -->
+    <div id="wechat-modal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl p-6 max-w-md w-full transform scale-95 opacity-0 transition-all duration-300 dark:bg-dark-card dark:text-dark-text">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800 dark:text-dark-text">我的微信二维码</h3>
+                <button id="close-wechat-modal" class="text-gray-400 hover:text-gray-600 dark:text-dark-muted">
+                    <i class="fa fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="flex flex-col items-center">
+                <img src="data:image/png;base64,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" alt="微信二维码" class="w-64 h-64 object-cover rounded-lg mb-4">
+                <p class="text-sm text-gray-600 italic text-center dark:text-dark-muted">长按识别二维码添加我的微信</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- QQ弹窗 -->
+    <div id="qq-modal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl p-6 max-w-md w-full transform scale-95 opacity-0 transition-all duration-300 dark:bg-dark-card dark:text-dark-text">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800 dark:text-dark-text">添加我的QQ</h3>
+                <button id="close-qq-modal" class="text-gray-400 hover:text-gray-600 dark:text-dark-muted">
+                    <i class="fa fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <a href="https://qm.qq.com/q/aTNzBlx3pu?from=tim" target="_blank" class="block bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-4 rounded-lg text-center transition-colors">
+                    <i class="fa fa-external-link mr-2"></i>直接跳转添加
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 电话弹窗 -->
+    <div id="phone-modal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl p-6 max-w-md w-full transform scale-95 opacity-0 transition-all duration-300 dark:bg-dark-card dark:text-dark-text">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800 dark:text-dark-text">我的电话号码</h3>
+                <button id="close-phone-modal" class="text-gray-400 hover:text-gray-600 dark:text-dark-muted">
+                    <i class="fa fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="flex items-center justify-center mb-4">
+                <span id="phone-number" class="text-2xl font-bold text-gray-800 mr-4 dark:text-dark-text">15259503637</span>
+                <button id="copy-phone-btn" class="bg-primary hover:bg-secondary text-white px-4 py-2 rounded-lg transition-colors">
+                    <i class="fa fa-copy mr-1"></i>复制
+                </button>
+            </div>
+            <p id="copy-success" class="text-green-500 text-center hidden">已复制到剪贴板！</p>
+        </div>
+    </div>
+
+    <script>
+        // 深色模式切换
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const htmlElement = document.documentElement;
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+        // 初始化深色模式
+        if (isDarkMode) {
+            htmlElement.classList.add('dark');
+            darkModeToggle.innerHTML = '<i class="fa fa-sun-o text-xl"></i>';
+        } else {
+            htmlElement.classList.remove('dark');
+            darkModeToggle.innerHTML = '<i class="fa fa-moon-o text-xl"></i>';
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            const isDark = htmlElement.classList.toggle('dark');
+            localStorage.setItem('darkMode', isDark);
+            darkModeToggle.innerHTML = isDark ? '<i class="fa fa-sun-o text-xl"></i>' : '<i class="fa fa-moon-o text-xl"></i>';
+        });
+
+        // 微信弹窗逻辑
+        const wechatCard = document.getElementById('wechat-card');
+        const wechatModal = document.getElementById('wechat-modal');
+        const closeWechatModal = document.getElementById('close-wechat-modal');
+
+        wechatCard.addEventListener('click', () => {
+            wechatModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                wechatModal.classList.remove('opacity-0');
+                wechatModal.querySelector('div').classList.remove('scale-95', 'opacity-0');
+                wechatModal.querySelector('div').classList.add('scale-100', 'opacity-100');
+            }, 10);
+        });
+
+        closeWechatModal.addEventListener('click', () => {
+            wechatModal.classList.add('opacity-0');
+            wechatModal.querySelector('div').classList.add('scale-95', 'opacity-0');
+            wechatModal.querySelector('div').classList.remove('scale-100', 'opacity-100');
+            setTimeout(() => {
+                wechatModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        });
+
+        // QQ弹窗逻辑
+        const qqCard = document.getElementById('qq-card');
+        const qqModal = document.getElementById('qq-modal');
+        const closeQqModal = document.getElementById('close-qq-modal');
+
+        qqCard.addEventListener('click', () => {
+            qqModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                qqModal.classList.remove('opacity-0');
+                qqModal.querySelector('div').classList.remove('scale-95', 'opacity-0');
+                qqModal.querySelector('div').classList.add('scale-100', 'opacity-100');
+            }, 10);
+        });
+
+        closeQqModal.addEventListener('click', () => {
+            qqModal.classList.add('opacity-0');
+            qqModal.querySelector('div').classList.add('scale-95', 'opacity-0');
+            qqModal.querySelector('div').classList.remove('scale-100', 'opacity-100');
+            setTimeout(() => {
+                qqModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        });
+
+        // 电话弹窗逻辑
+        const phoneCard = document.getElementById('phone-card');
+        const phoneModal = document.getElementById('phone-modal');
+        const closePhoneModal = document.getElementById('close-phone-modal');
+        const copyPhoneBtn = document.getElementById('copy-phone-btn');
+        const phoneNumber = document.getElementById('phone-number');
+        const copySuccess = document.getElementById('copy-success');
+
+        phoneCard.addEventListener('click', () => {
+            phoneModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                phoneModal.classList.remove('opacity-0');
+                phoneModal.querySelector('div').classList.remove('scale-95', 'opacity-0');
+                phoneModal.querySelector('div').classList.add('scale-100', 'opacity-100');
+            }, 10);
+        });
+
+        closePhoneModal.addEventListener('click', () => {
+            phoneModal.classList.add('opacity-0');
+            phoneModal.querySelector('div').classList.add('scale-95', 'opacity-0');
+            phoneModal.querySelector('div').classList.remove('scale-100', 'opacity-100');
+            setTimeout(() => {
+                phoneModal.classList.add('hidden');
+                document.body.style.overflow = '';
+                copySuccess.classList.add('hidden');
+            }, 300);
+        });
+
+        copyPhoneBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(phoneNumber.textContent)
+                .then(() => {
+                    copySuccess.classList.remove('hidden');
+                    copySuccess.classList.add('animate-pulse');
+                    setTimeout(() => {
+                        copySuccess.classList.add('hidden');
+                        copySuccess.classList.remove('animate-pulse');
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('复制失败: ', err);
+                    alert('复制失败，请手动复制');
+                });
+        });
+
+        // 点击弹窗外部关闭弹窗
+        document.querySelectorAll('.fixed').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.add('opacity-0');
+                    modal.querySelector('div').classList.add('scale-95', 'opacity-0');
+                    modal.querySelector('div').classList.remove('scale-100', 'opacity-100');
+                    setTimeout(() => {
+                        modal.classList.add('hidden');
+                        document.body.style.overflow = '';
+                    }, 300);
+                }
+            });
+        });
+
+        // 页面加载动画
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card-hover');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('opacity-100', 'translate-y-0');
+                    card.classList.remove('opacity-0', 'translate-y-4');
+                }, 100 * index);
+            });
+        });
+    </script>
+
+</body></html>
