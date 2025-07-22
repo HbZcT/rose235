@@ -1,10 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
+<link rel="shortcut icon" href="https://assets.retiehe.com/host-favicon-256-2.png" />
+
 <head>
-	<title>404 Not Found</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>错误：404</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			/* 使用Arial字体，如果不可用则使用系统默认 sans-serif */
+			background-color: #f5f5f5;
+			/* 背景色浅灰色 */
+			display: flex;
+			/* 使用Flex布局 */
+			justify-content: center;
+			/* 水平居中 */
+			align-items: center;
+			/* 垂直居中 */
+			height: 100vh;
+			/* 高度占据整个视口 */
+			margin: 0;
+			/* 去除默认的body外边距 */
+		}
+
+		.error-container {
+			text-align: center;
+			/* 内容居中对齐 */
+			background-color: #fff;
+			/* 白色背景 */
+			padding: 40px;
+			/* 内边距 */
+			border-radius: 10px;
+			/* 圆角边框 */
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+			/* 淡黑色阴影 */
+			max-width: 80%;
+			/* 最大宽度为父元素的80% */
+			width: 400px;
+			/* 固定宽度为400像素 */
+			box-sizing: border-box;
+			/* 盒模型包括边框在内 */
+		}
+
+		h1 {
+			font-size: 2.5rem;
+			/* 标题字体大小 */
+			margin-bottom: 20px;
+			/* 底部外边距 */
+			color: #333;
+			/* 深灰色字体 */
+		}
+
+		p {
+			font-size: 1.2rem;
+			/* 段落字体大小 */
+			color: #666;
+			/* 中灰色字体 */
+			margin-bottom: 30px;
+			/* 底部外边距 */
+		}
+
+		a {
+			display: inline-block;
+			/* 行内块级元素 */
+			padding: 10px 20px;
+			/* 内边距 */
+			background-color: #007bff;
+			/* 按钮背景色 */
+			color: #fff;
+			/* 按钮文字颜色 */
+			text-decoration: none;
+			/* 去除下划线 */
+			border-radius: 5px;
+			/* 圆角边框 */
+			transition: background-color 0.3s ease;
+			/* 过渡效果 */
+		}
+
+		a:hover {
+			background-color: #0056b3;
+			/* 鼠标悬停时背景色变化 */
+		}
+	</style>
 </head>
+
 <body>
-	<h1>Not Found</h1>
-	<p>The requested URL was not found on this server.</p>
-</body>
+	<div class="error-container">
+		<h1>404	 未找到</h1>
+		<p>请您确认网址无误并稍后重试，如果该页面仍然无法访问，请与网站管理员联系。</p>
+		<a href="/index.html">返回首页</a>
+	</div>
 </html>

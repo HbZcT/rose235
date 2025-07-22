@@ -1,20 +1,336 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-	<meta charset="utf-8">
-	<title>我的网站</title>
-	<link rel="stylesheet" href="template">
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的联系方式</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        dark: {
+                            background: '#121212',
+                            card: '#1E1E1E'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .popup-animation {
+                animation: popup 0.3s ease forwards;
+            }
+            .bg-blur {
+                filter: blur(8px);
+                transition: filter 0.3s ease;
+            }
+            @keyframes popup {
+                from { opacity: 0; transform: scale(0.9); }
+                to { opacity: 1; transform: scale(1); }
+            }
+        }
+    </style>
 </head>
-<body>
-	<div class="bg-img"></div>
-	<header>我的网站</header>
-	<main>
-		<h1>Hello, World!</h1>
-		<p>这是由<a href="https://host.retiehe.com/" target="_blank">热铁盒网页托管</a>创建的默认页面。</p>
-		<p>请尽情挥洒您的创意！</p>
-	</main>
-	<footer>
-		本网站由<a href="https://host.retiehe.com/" target="_blank">热铁盒网页托管</a>强力驱动。
-	</footer>
-</body>
-</html>
+<body class="bg-gray-50 text-gray-800 dark:bg-dark-background dark:text-gray-100 min-h-screen flex flex-col">
+    <!-- 主内容容器 - 用于应用模糊效果 -->
+    <div id="main-content" class="transition-all duration-300 flex-grow">
+        <div class="container mx-auto px-4 py-8 max-w-md">
+            <!-- 标题 -->
+            <div class="text-center mb-10">
+                <h1 class="text-[clamp(1.8rem,5vw,2.5rem)] font-bold text-primary mb-2">联系方式</h1>
+                <p class="text-gray-600 dark:text-gray-400">你好，新同学，很高兴认识你</p>
+                <button id="theme-toggle" class="mt-4 p-2 rounded-full bg-gray-200 dark:bg-dark-card">
+                    <i class="fa fa-moon-o dark:hidden" aria-hidden="true"></i>
+                    <i class="fa fa-sun-o hidden dark:inline" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <!-- 联系方式列表 -->
+            <div class="space-y-4">
+                <!-- 微信 -->
+                <div class="open-popup bg-white dark:bg-dark-card rounded-xl shadow p-5 flex items-center justify-between cursor-pointer hover:shadow-lg transition-shadow" data-popup="wechat">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mr-4">
+                            <i class="fa fa-weixin text-green-600 text-xl" aria-hidden="true"></i>
+                        </div>
+                        <span class="text-lg font-medium">微信</span>
+                    </div>
+                    <i class="fa fa-chevron-right text-gray-400" aria-hidden="true"></i>
+                </div>
+
+                <!-- QQ -->
+                <div class="open-popup bg-white dark:bg-dark-card rounded-xl shadow p-5 flex items-center justify-between cursor-pointer hover:shadow-lg transition-shadow" data-popup="qq">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-4">
+                            <i class="fa fa-qq text-blue-500 text-xl" aria-hidden="true"></i>
+                        </div>
+                        <span class="text-lg font-medium">QQ</span>
+                    </div>
+                    <i class="fa fa-chevron-right text-gray-400" aria-hidden="true"></i>
+                </div>
+
+                <!-- 电话 -->
+                <div class="open-popup bg-white dark:bg-dark-card rounded-xl shadow p-5 flex items-center justify-between cursor-pointer hover:shadow-lg transition-shadow" data-popup="phone">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mr-4">
+                            <i class="fa fa-phone text-green-600 text-xl" aria-hidden="true"></i>
+                        </div>
+                        <span class="text-lg font-medium">电话</span>
+                    </div>
+                    <i class="fa fa-chevron-right text-gray-400" aria-hidden="true"></i>
+                </div>
+
+                <!-- 抖音 -->
+                <div class="open-popup bg-white dark:bg-dark-card rounded-xl shadow p-5 flex items-center justify-between cursor-pointer hover:shadow-lg transition-shadow" data-popup="douyin">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center mr-4">
+                            <i class="fa fa-music text-red-500 text-xl" aria-hidden="true"></i>
+                        </div>
+                        <span class="text-lg font-medium">抖音</span>
+                    </div>
+                    <i class="fa fa-chevron-right text-gray-400" aria-hidden="true"></i>
+                </div>
+
+                <!-- 钉钉 -->
+                <div class="open-popup bg-white dark:bg-dark-card rounded-xl shadow p-5 flex items-center justify-between cursor-pointer hover:shadow-lg transition-shadow" data-popup="dingding">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-4">
+                            <i class="fa fa-bell text-blue-600 text-xl" aria-hidden="true"></i>
+                        </div>
+                        <span class="text-lg font-medium">钉钉</span>
+                    </div>
+                    <i class="fa fa-chevron-right text-gray-400" aria-hidden="true"></i>
+                </div>
+
+                <!-- 企业微信 -->
+                <div class="open-popup bg-white dark:bg-dark-card rounded-xl shadow p-5 flex items-center justify-between cursor-pointer hover:shadow-lg transition-shadow" data-popup="workwechat">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mr-4">
+                            <i class="fa fa-building text-green-600 text-xl" aria-hidden="true"></i>
+                        </div>
+                        <span class="text-lg font-medium">企业微信</span>
+                    </div>
+                    <i class="fa fa-chevron-right text-gray-400" aria-hidden="true"></i>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 text-gray-500 dark:text-gray-400 text-sm">
+                <p>预祝我们有一个美好的高中生活</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚信息 -->
+    <footer class="mt-auto py-6 border-t border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-4 max-w-md text-center text-gray-500 dark:text-gray-400 text-sm">
+            <p class="mb-1">页面制作：黄梓涛</p>
+            <p class="mb-2">Huang Z.T. ©2025</p>
+            <p>本页面最终解释权归制作人所有</p>
+        </div>
+    </footer>
+
+    <!-- 弹窗背景 -->
+    <div id="overlay" class="fixed inset-0 bg-black/50 z-40 hidden" onclick="closeAllPopups()"></div>
+
+    <!-- 微信弹窗 -->
+    <div id="wechat" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-dark-card rounded-xl shadow-2xl p-6 w-full max-w-md popup-animation">
+            <h3 class="text-xl font-bold mb-4 text-primary text-center">微信</h3>
+            <div class="text-center">
+                <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg inline-block">
+                    <img src="https://youke1.picui.cn/s1/2025/07/21/687de2b1dd6c3.jpg" alt="微信二维码" class="w-64 h-64">
+                </div>
+                <p class="text-sm text-gray-500 mt-4">长按识别二维码添加我的微信</p>
+            </div>
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600" onclick="closeAllPopups()">
+                <i class="fa fa-times text-xl" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- QQ弹窗 -->
+    <div id="qq" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-dark-card rounded-xl shadow-2xl p-6 w-full max-w-md popup-animation">
+            <h3 class="text-xl font-bold mb-6 text-primary text-center">QQ</h3>
+            <div class="flex flex-col gap-4">
+                <a href="https://qm.qq.com/q/aTNzBlx3pu?from=tim" target="_blank" class="bg-primary hover:bg-primary/90 text-white py-3 px-4 rounded-lg transition-colors text-center">
+                    <i class="fa fa-external-link mr-2" aria-hidden="true"></i>直接跳转QQ
+                </a>
+                <button id="qq-qrcode-btn" class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200 py-3 px-4 rounded-lg transition-colors text-center">
+                    <i class="fa fa-qrcode mr-2" aria-hidden="true"></i>识别二维码
+                </button>
+            </div>
+            <div id="qq-qrcode" class="mt-6 hidden text-center">
+                <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg inline-block">
+                    <img src="https://youke1.picui.cn/s1/2025/07/22/687f608307913.jpg" alt="QQ二维码" class="w-64 h-64">
+                </div>
+            </div>
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600" onclick="closeAllPopups()">
+                <i class="fa fa-times text-xl" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- 电话弹窗 -->
+    <div id="phone" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-dark-card rounded-xl shadow-2xl p-6 w-full max-w-md popup-animation">
+            <h3 class="text-xl font-bold mb-6 text-primary text-center">电话</h3>
+            <div class="flex items-center justify-center gap-3 bg-gray-100 dark:bg-gray-800 py-4 px-6 rounded-lg mb-4">
+                <span id="phone-num" class="text-xl font-medium">15259503637</span>
+                <button id="copy-btn" class="text-primary hover:text-primary/80">
+                    <i class="fa fa-copy" aria-hidden="true"></i>
+                </button>
+            </div>
+            <p id="copy-success" class="text-sm text-green-500 text-center hidden">已复制到剪贴板！</p>
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600" onclick="closeAllPopups()">
+                <i class="fa fa-times text-xl" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- 抖音弹窗 -->
+    <div id="douyin" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-dark-card rounded-xl shadow-2xl p-6 w-full max-w-md popup-animation">
+            <h3 class="text-xl font-bold mb-4 text-primary text-center">抖音</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">请复制链接后在浏览器中打开</p>
+            <div class="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 p-3 rounded-lg mb-4">
+                <span id="douyin-link" class="text-sm break-all flex-grow">https://v.douyin.com/NQMXkuTHMN4/ 0@7.com</span>
+                <button id="copy-douyin" class="text-primary hover:text-primary/80 whitespace-nowrap">
+                    <i class="fa fa-copy mr-1" aria-hidden="true"></i>复制
+                </button>
+            </div>
+            <p id="douyin-copy-success" class="text-sm text-green-500 text-center hidden mb-4">链接已复制！</p>
+            <a href="https://v.douyin.com/NQMXkuTHMN4/ 0@7.com" target="_blank" class="block text-center bg-primary hover:bg-primary/90 text-white py-3 px-6 rounded-lg transition-colors">
+                <i class="fa fa-external-link mr-2" aria-hidden="true"></i>跳转抖音
+            </a>
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600" onclick="closeAllPopups()">
+                <i class="fa fa-times text-xl" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- 钉钉弹窗 -->
+    <div id="dingding" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-dark-card rounded-xl shadow-2xl p-6 w-full max-w-md popup-animation">
+            <h3 class="text-xl font-bold mb-6 text-primary text-center">钉钉</h3>
+            <a href="https://n.dingtalk.com/dingding/h5-profile/outer/index.html?fr_source=13&amp;uidCipher=dEmv4qkJQz3ypo5wrh%2FfeQ%3D%3D&amp;cardToken=1f4c719d63&amp;profile=%40kgDOK-c03w" target="_blank" class="block text-center bg-primary hover:bg-primary/90 text-white py-3 px-6 rounded-lg transition-colors">
+                <i class="fa fa-external-link mr-2" aria-hidden="true"></i>跳转钉钉
+            </a>
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600" onclick="closeAllPopups()">
+                <i class="fa fa-times text-xl" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- 企业微信弹窗 -->
+    <div id="workwechat" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-dark-card rounded-xl shadow-2xl p-6 w-full max-w-md popup-animation">
+            <h3 class="text-xl font-bold mb-4 text-primary text-center">企业微信</h3>
+            <div class="text-center">
+                <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg inline-block">
+                    <img src="https://youke1.picui.cn/s1/2025/07/21/687de2e9adcab.jpg" alt="企业微信二维码" class="w-64 h-64">
+                </div>
+                <p class="text-sm text-gray-500 mt-4">长按识别二维码添加我的企业微信</p>
+            </div>
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600" onclick="closeAllPopups()">
+                <i class="fa fa-times text-xl" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            // 检查深色模式偏好
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+
+            // 绑定所有打开弹窗的按钮
+            document.querySelectorAll('.open-popup').forEach(elem => {
+                elem.addEventListener('click', function() {
+                    const popupId = this.getAttribute('data-popup');
+                    openPopup(popupId);
+                });
+            });
+
+            // QQ二维码切换
+            document.getElementById('qq-qrcode-btn').addEventListener('click', function() {
+                const qrcode = document.getElementById('qq-qrcode');
+                qrcode.classList.toggle('hidden');
+                this.innerHTML = qrcode.classList.contains('hidden') 
+                    ? '<i class="fa fa-qrcode mr-2" aria-hidden="true"></i>识别二维码'
+                    : '<i class="fa fa-times mr-2" aria-hidden="true"></i>隐藏二维码';
+            });
+
+            // 电话号码复制功能
+            document.getElementById('copy-btn').addEventListener('click', function() {
+                const number = document.getElementById('phone-num').textContent;
+                navigator.clipboard.writeText(number).then(() => {
+                    const msg = document.getElementById('copy-success');
+                    msg.classList.remove('hidden');
+                    setTimeout(() => msg.classList.add('hidden'), 2000);
+                });
+            });
+
+            // 抖音链接复制功能
+            document.getElementById('copy-douyin').addEventListener('click', function() {
+                const link = document.getElementById('douyin-link').textContent;
+                navigator.clipboard.writeText(link).then(() => {
+                    const msg = document.getElementById('douyin-copy-success');
+                    msg.classList.remove('hidden');
+                    setTimeout(() => msg.classList.add('hidden'), 2000);
+                });
+            });
+
+            // 深色模式切换
+            document.getElementById('theme-toggle').addEventListener('click', function() {
+                document.documentElement.classList.toggle('dark');
+                localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+            });
+        });
+
+        // 打开弹窗函数
+        function openPopup(id) {
+            // 先关闭所有弹窗
+            closeAllPopups();
+            
+            // 显示遮罩层和目标弹窗
+            document.getElementById('overlay').classList.remove('hidden');
+            const popup = document.getElementById(id);
+            popup.classList.remove('hidden');
+            popup.style.display = 'flex';
+            
+            // 添加背景模糊效果
+            document.getElementById('main-content').classList.add('bg-blur');
+            
+            // 防止背景滚动
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 关闭所有弹窗函数
+        function closeAllPopups() {
+            document.getElementById('overlay').classList.add('hidden');
+            
+            // 隐藏所有弹窗
+            ['wechat', 'qq', 'phone', 'douyin', 'dingding', 'workwechat'].forEach(id => {
+                const popup = document.getElementById(id);
+                popup.classList.add('hidden');
+                popup.style.display = 'none';
+            });
+            
+            // 移除背景模糊效果
+            document.getElementById('main-content').classList.remove('bg-blur');
+            
+            // 恢复背景滚动
+            document.body.style.overflow = '';
+        }
+    </script>
+
+
+</body></html>
