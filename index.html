@@ -1,4 +1,6 @@
-<html lang="zh-CN"><head>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的联系方式</title>
@@ -29,9 +31,22 @@
                 filter: blur(8px);
                 transition: filter 0.3s ease;
             }
+            .contact-item {
+                transition: all 0.3s ease;
+            }
+            .contact-item:hover {
+                transform: translateY(-2px);
+            }
+            .qrcode-animation {
+                animation: qrcodeFadeIn 0.5s ease forwards;
+            }
             @keyframes popup {
                 from { opacity: 0; transform: scale(0.9); }
                 to { opacity: 1; transform: scale(1); }
+            }
+            @keyframes qrcodeFadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
             }
         }
     </style>
@@ -53,7 +68,7 @@
             <!-- 联系方式列表 -->
             <div class="space-y-4">
                 <!-- 微信 -->
-                <div class="open-popup bg-white dark:bg-dark-card rounded-xl shadow p-5 flex items-center justify-between cursor-pointer hover:shadow-lg transition-shadow" data-popup="wechat">
+                <div class="open-popup bg-white dark:bg-dark-card rounded-xl shadow p-5 flex items-center justify-between cursor-pointer hover:shadow-lg transition-shadow contact-item" data-popup="wechat">
                     <div class="flex items-center">
                         <div class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mr-4">
                             <i class="fa fa-weixin text-green-600 text-xl" aria-hidden="true"></i>
@@ -64,7 +79,7 @@
                 </div>
 
                 <!-- QQ -->
-                <div class="open-popup bg-white dark:bg-dark-card rounded-xl shadow p-5 flex items-center justify-between cursor-pointer hover:shadow-lg transition-shadow" data-popup="qq">
+                <div class="open-popup bg-white dark:bg-dark-card rounded-xl shadow p-5 flex items-center justify-between cursor-pointer hover:shadow-lg transition-shadow contact-item" data-popup="qq">
                     <div class="flex items-center">
                         <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-4">
                             <i class="fa fa-qq text-blue-500 text-xl" aria-hidden="true"></i>
@@ -74,8 +89,19 @@
                     <i class="fa fa-chevron-right text-gray-400" aria-hidden="true"></i>
                 </div>
 
+                <!-- QQ邮箱 -->
+                <div class="open-popup bg-white dark:bg-dark-card rounded-xl shadow p-5 flex items-center justify-between cursor-pointer hover:shadow-lg transition-shadow contact-item" data-popup="email">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center mr-4">
+                            <i class="fa fa-envelope text-red-500 text-xl" aria-hidden="true"></i>
+                        </div>
+                        <span class="text-lg font-medium">QQ邮箱</span>
+                    </div>
+                    <i class="fa fa-chevron-right text-gray-400" aria-hidden="true"></i>
+                </div>
+
                 <!-- 电话 -->
-                <div class="open-popup bg-white dark:bg-dark-card rounded-xl shadow p-5 flex items-center justify-between cursor-pointer hover:shadow-lg transition-shadow" data-popup="phone">
+                <div class="open-popup bg-white dark:bg-dark-card rounded-xl shadow p-5 flex items-center justify-between cursor-pointer hover:shadow-lg transition-shadow contact-item" data-popup="phone">
                     <div class="flex items-center">
                         <div class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mr-4">
                             <i class="fa fa-phone text-green-600 text-xl" aria-hidden="true"></i>
@@ -86,7 +112,7 @@
                 </div>
 
                 <!-- 抖音 -->
-                <div class="open-popup bg-white dark:bg-dark-card rounded-xl shadow p-5 flex items-center justify-between cursor-pointer hover:shadow-lg transition-shadow" data-popup="douyin">
+                <div class="open-popup bg-white dark:bg-dark-card rounded-xl shadow p-5 flex items-center justify-between cursor-pointer hover:shadow-lg transition-shadow contact-item" data-popup="douyin">
                     <div class="flex items-center">
                         <div class="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center mr-4">
                             <i class="fa fa-music text-red-500 text-xl" aria-hidden="true"></i>
@@ -97,7 +123,7 @@
                 </div>
 
                 <!-- 钉钉 -->
-                <div class="open-popup bg-white dark:bg-dark-card rounded-xl shadow p-5 flex items-center justify-between cursor-pointer hover:shadow-lg transition-shadow" data-popup="dingding">
+                <div class="open-popup bg-white dark:bg-dark-card rounded-xl shadow p-5 flex items-center justify-between cursor-pointer hover:shadow-lg transition-shadow contact-item" data-popup="dingding">
                     <div class="flex items-center">
                         <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-4">
                             <i class="fa fa-bell text-blue-600 text-xl" aria-hidden="true"></i>
@@ -108,7 +134,7 @@
                 </div>
 
                 <!-- 企业微信 -->
-                <div class="open-popup bg-white dark:bg-dark-card rounded-xl shadow p-5 flex items-center justify-between cursor-pointer hover:shadow-lg transition-shadow" data-popup="workwechat">
+                <div class="open-popup bg-white dark:bg-dark-card rounded-xl shadow p-5 flex items-center justify-between cursor-pointer hover:shadow-lg transition-shadow contact-item" data-popup="workwechat">
                     <div class="flex items-center">
                         <div class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mr-4">
                             <i class="fa fa-building text-green-600 text-xl" aria-hidden="true"></i>
@@ -166,10 +192,27 @@
                 </button>
             </div>
             <div id="qq-qrcode" class="mt-6 hidden text-center">
-                <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg inline-block">
+                <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg inline-block qrcode-animation">
                     <img src="https://youke1.picui.cn/s1/2025/07/22/687f608307913.jpg" alt="QQ二维码" class="w-64 h-64">
                 </div>
             </div>
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600" onclick="closeAllPopups()">
+                <i class="fa fa-times text-xl" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- QQ邮箱弹窗 -->
+    <div id="email" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-dark-card rounded-xl shadow-2xl p-6 w-full max-w-md popup-animation">
+            <h3 class="text-xl font-bold mb-6 text-primary text-center">QQ邮箱</h3>
+            <div class="flex items-center justify-center gap-3 bg-gray-100 dark:bg-gray-800 py-4 px-6 rounded-lg mb-4">
+                <span id="email-address" class="text-xl font-medium">2521053522@qq.com</span>
+                <button id="copy-email" class="text-primary hover:text-primary/80">
+                    <i class="fa fa-copy" aria-hidden="true"></i>
+                </button>
+            </div>
+            <p id="email-copy-success" class="text-sm text-green-500 text-center hidden">已复制到剪贴板！</p>
             <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600" onclick="closeAllPopups()">
                 <i class="fa fa-times text-xl" aria-hidden="true"></i>
             </button>
@@ -197,7 +240,7 @@
     <div id="douyin" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
         <div class="bg-white dark:bg-dark-card rounded-xl shadow-2xl p-6 w-full max-w-md popup-animation">
             <h3 class="text-xl font-bold mb-4 text-primary text-center">抖音</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">请复制链接后在浏览器中打开</p>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">请复制链接后打开抖音APP</p>
             <div class="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 p-3 rounded-lg mb-4">
                 <span id="douyin-link" class="text-sm break-all flex-grow">https://v.douyin.com/NQMXkuTHMN4/ 0@7.com</span>
                 <button id="copy-douyin" class="text-primary hover:text-primary/80 whitespace-nowrap">
@@ -205,9 +248,6 @@
                 </button>
             </div>
             <p id="douyin-copy-success" class="text-sm text-green-500 text-center hidden mb-4">链接已复制！</p>
-            <a href="https://v.douyin.com/NQMXkuTHMN4/ 0@7.com" target="_blank" class="block text-center bg-primary hover:bg-primary/90 text-white py-3 px-6 rounded-lg transition-colors">
-                <i class="fa fa-external-link mr-2" aria-hidden="true"></i>跳转抖音
-            </a>
             <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600" onclick="closeAllPopups()">
                 <i class="fa fa-times text-xl" aria-hidden="true"></i>
             </button>
@@ -218,9 +258,20 @@
     <div id="dingding" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
         <div class="bg-white dark:bg-dark-card rounded-xl shadow-2xl p-6 w-full max-w-md popup-animation">
             <h3 class="text-xl font-bold mb-6 text-primary text-center">钉钉</h3>
-            <a href="https://n.dingtalk.com/dingding/h5-profile/outer/index.html?fr_source=13&amp;uidCipher=dEmv4qkJQz3ypo5wrh%2FfeQ%3D%3D&amp;cardToken=1f4c719d63&amp;profile=%40kgDOK-c03w" target="_blank" class="block text-center bg-primary hover:bg-primary/90 text-white py-3 px-6 rounded-lg transition-colors">
-                <i class="fa fa-external-link mr-2" aria-hidden="true"></i>跳转钉钉
-            </a>
+            <div class="flex flex-col gap-4 mb-4">
+                <a href="https://n.dingtalk.com/dingding/h5-profile/outer/index.html?fr_source=13&amp;uidCipher=dEmv4qkJQz3ypo5wrh%2FfeQ%3D%3D&amp;cardToken=1f4c719d63&amp;profile=%40kgDOK-c03w" target="_blank" class="bg-primary hover:bg-primary/90 text-white py-3 px-4 rounded-lg transition-colors text-center">
+                    <i class="fa fa-external-link mr-2" aria-hidden="true"></i>直接跳转钉钉
+                </a>
+                <button id="dingding-qrcode-btn" class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200 py-3 px-4 rounded-lg transition-colors text-center">
+                    <i class="fa fa-qrcode mr-2" aria-hidden="true"></i>识别二维码
+                </button>
+            </div>
+            <div id="dingding-qrcode" class="mt-2 hidden text-center">
+                <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg inline-block qrcode-animation">
+                    <img src="https://youke1.picui.cn/s1/2025/07/23/68808b8089119.jpg" alt="钉钉二维码" class="w-64 h-64">
+                </div>
+                <p class="text-sm text-gray-500 mt-4">长按识别二维码添加我的钉钉</p>
+            </div>
             <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600" onclick="closeAllPopups()">
                 <i class="fa fa-times text-xl" aria-hidden="true"></i>
             </button>
@@ -244,6 +295,11 @@
     </div>
 
     <script>
+        // 页面加载完成后显示浏览器弹窗
+        window.onload = function() {
+            alert("同学你好，欢迎添加我的联系方式，备注：黄梓涛");
+        };
+
         // 初始化页面
         document.addEventListener('DOMContentLoaded', function() {
             // 检查深色模式偏好
@@ -259,10 +315,39 @@
                 });
             });
 
-            // QQ二维码切换
+            // QQ二维码切换 - 添加动画效果
             document.getElementById('qq-qrcode-btn').addEventListener('click', function() {
                 const qrcode = document.getElementById('qq-qrcode');
                 qrcode.classList.toggle('hidden');
+                
+                // 如果显示二维码，添加动画类
+                if (!qrcode.classList.contains('hidden')) {
+                    setTimeout(() => {
+                        qrcode.querySelector('.qrcode-animation').style.animation = 'none';
+                        qrcode.querySelector('.qrcode-animation').offsetHeight; // 触发重绘
+                        qrcode.querySelector('.qrcode-animation').style.animation = null;
+                    }, 10);
+                }
+                
+                this.innerHTML = qrcode.classList.contains('hidden') 
+                    ? '<i class="fa fa-qrcode mr-2" aria-hidden="true"></i>识别二维码'
+                    : '<i class="fa fa-times mr-2" aria-hidden="true"></i>隐藏二维码';
+            });
+
+            // 钉钉二维码切换 - 添加动画效果
+            document.getElementById('dingding-qrcode-btn').addEventListener('click', function() {
+                const qrcode = document.getElementById('dingding-qrcode');
+                qrcode.classList.toggle('hidden');
+                
+                // 如果显示二维码，添加动画类
+                if (!qrcode.classList.contains('hidden')) {
+                    setTimeout(() => {
+                        qrcode.querySelector('.qrcode-animation').style.animation = 'none';
+                        qrcode.querySelector('.qrcode-animation').offsetHeight; // 触发重绘
+                        qrcode.querySelector('.qrcode-animation').style.animation = null;
+                    }, 10);
+                }
+                
                 this.innerHTML = qrcode.classList.contains('hidden') 
                     ? '<i class="fa fa-qrcode mr-2" aria-hidden="true"></i>识别二维码'
                     : '<i class="fa fa-times mr-2" aria-hidden="true"></i>隐藏二维码';
@@ -283,6 +368,16 @@
                 const link = document.getElementById('douyin-link').textContent;
                 navigator.clipboard.writeText(link).then(() => {
                     const msg = document.getElementById('douyin-copy-success');
+                    msg.classList.remove('hidden');
+                    setTimeout(() => msg.classList.add('hidden'), 2000);
+                });
+            });
+
+            // QQ邮箱复制功能
+            document.getElementById('copy-email').addEventListener('click', function() {
+                const email = document.getElementById('email-address').textContent;
+                navigator.clipboard.writeText(email).then(() => {
+                    const msg = document.getElementById('email-copy-success');
                     msg.classList.remove('hidden');
                     setTimeout(() => msg.classList.add('hidden'), 2000);
                 });
@@ -318,7 +413,7 @@
             document.getElementById('overlay').classList.add('hidden');
             
             // 隐藏所有弹窗
-            ['wechat', 'qq', 'phone', 'douyin', 'dingding', 'workwechat'].forEach(id => {
+            ['wechat', 'qq', 'phone', 'douyin', 'dingding', 'workwechat', 'email'].forEach(id => {
                 const popup = document.getElementById(id);
                 popup.classList.add('hidden');
                 popup.style.display = 'none';
@@ -331,6 +426,6 @@
             document.body.style.overflow = '';
         }
     </script>
-
-
-</body></html>
+</body>
+</html>
+    
